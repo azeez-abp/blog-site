@@ -27,6 +27,12 @@
       <version>4.13.2</version>
       <scope>test</scope>
     </dependency>
+    <!-- Mysql -->
+     <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.33</version>
+        </dependency>
 
     <!-- Servlet API (provided by the container, e.g., Tomcat) -->
     <dependency>
@@ -35,7 +41,20 @@
       <version>5.0.0</version>
       <scope>provided</scope>
     </dependency>
+
+      <!-- Bcrypt -->
+  <dependency>
+    <groupId>org.mindrot</groupId>
+    <artifactId>jbcrypt</artifactId>
+    <version>0.4</version>
+  </dependency>
+
+ 
+
+
   </dependencies>
+
+
 
   <build>
     <finalName>java-webapp</finalName>
