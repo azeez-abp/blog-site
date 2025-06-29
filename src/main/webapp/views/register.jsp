@@ -10,7 +10,7 @@
 <body>
     
     <div class="register-wrapper"> 
-        <div class="header"></div>
+        <div class="header">Create an Account</div>
         <div class="body">
         <form action="register" method="post">
             <input type="text" name="username" placeholder="Username" required /><br />

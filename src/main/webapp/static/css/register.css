@@ -28,8 +28,8 @@ body {
     margin-bottom: 20px;
 }
 
-.header::before {
-    content: "Create an Account";
+.header {
+    /* content: "Create an Account"; */
     display: block;
     font-size: 1.5em;
     font-weight: bold;
