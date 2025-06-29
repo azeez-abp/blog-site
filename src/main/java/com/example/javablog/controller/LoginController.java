@@ -43,7 +43,7 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res)
             throws ServletException, IOException {
-        accessLogger.info("Testing logger in doGet"); // Test log
+        accessLogger.info(String.format("Access %s form ip %s", req.getRequestURL().toString(), req.getRemoteAddr().toString() )); // Test log
         req.getRequestDispatcher("/views/login.jsp").forward(req, res);
     }
 }

@@ -43,6 +43,14 @@ public class DashboardController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res)
             throws ServletException, IOException {
+        HttpSession session = req.getSession(false);
+        if (session == null || session.getAttribute("user") == null) {
+            res.sendRedirect("/login");
+            return;
+        }
+        User user = (User) session.getAttribute("user");
+        req.setAttribute("user", user);
+        req.setAttribute("title", "Dashboard");
         accessLogger.info("Testing logger in doGet"); // Test log
         req.getRequestDispatcher("/views/dashboard.jsp").forward(req, res);
     }

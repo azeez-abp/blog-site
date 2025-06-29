@@ -1,5 +1,5 @@
 -- Users table
-CREATE TABLE users (
+CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(100) NOT NULL,
     email VARCHAR(150) NOT NULL UNIQUE,
@@ -10,7 +10,7 @@ CREATE TABLE users (
 );
 
 -- Posts table
-CREATE TABLE posts (
+CREATE TABLE IF NOT EXITS posts (
     id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
     slug VARCHAR(255) NOT NULL UNIQUE,
@@ -22,8 +22,16 @@ CREATE TABLE posts (
     FOREIGN KEY (author_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
+ALTER TABLE posts (
+    ADD CONSTRAINT chk_slug CHECK (slug REGEXP '^[a-z0-9]+(?:-[a-z0-9]+)*$'),
+    ADD COLUMN status ENUM('draft', 'published', 'archived') DEFAULT 'draft',
+    ADD COLUMN views INT DEFAULT 0,
+    ADD COLUMN likes INT DEFAULT 0,
+    ADD COLUMN comments_count INT DEFAULT 0
+);
+
 -- Comments table
-CREATE TABLE comments (
+CREATE TABLE  IF NOT EXISTS comments (
     id INT AUTO_INCREMENT PRIMARY KEY,
     post_id INT NOT NULL,
     user_id INT NOT NULL,
@@ -34,13 +42,13 @@ CREATE TABLE comments (
 );
 
 -- Tags table
-CREATE TABLE tags (
+CREATE TABLE  IF NOT EXISTS tags (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL UNIQUE
 );
 
 -- Post-Tags junction table (many-to-many)
-CREATE TABLE post_tags (
+CREATE TABLE  IF NOT EXISTS post_tags (
     post_id INT NOT NULL,
     tag_id INT NOT NULL,
     PRIMARY KEY (post_id, tag_id),
