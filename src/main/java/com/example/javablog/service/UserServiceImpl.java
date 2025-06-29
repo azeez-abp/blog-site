@@ -17,4 +17,12 @@ public class UserServiceImpl implements UserService {
     public boolean emailExists(String email) {
         return userDAO.getUserByEmail(email) != null;
     }
+    public User authenticate(String email, String password) {
+        
+        User user = userDAO.getUserByEmail(email);
+        if (user != null && BCrypt.checkpw(password, user.getPassword())) {
+            return user; // Authentication successful
+        }
+        return null; // Authentication failed
+    }
 }

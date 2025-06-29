@@ -4,8 +4,11 @@ import com.example.javablog.model.User;
 import com.example.javablog.util.DBUtil;
 import java.sql.*;
 
-public class UserDAOImpl implements UserDAO {
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
+public class UserDAOImpl implements UserDAO {
+    private static final Logger logger = LogManager.getLogger(UserDAOImpl.class/*class where log is comming from*/);
     public void registerUser(User user) {
         String sql = "INSERT INTO users (username, email, password, bio, avatar_url) VALUES (?, ?, ?, ?, ?)";
         try (Connection conn = DBUtil.getConnection();
@@ -17,12 +20,13 @@ public class UserDAOImpl implements UserDAO {
             stmt.setString(5, user.getAvatarUrl());
             stmt.executeUpdate();
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Error registering user: " + user.getUsername(), e);
         }
     }
 
     public User getUserByEmail(String email) {
         String sql = "SELECT * FROM users WHERE email = ?";
+         logger.error("Error retrieving user by email: " + email);
         try (
              Connection conn = DBUtil.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)
@@ -42,6 +46,8 @@ public class UserDAOImpl implements UserDAO {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            System.out.println("Error retrieving user by email UNknow messsgaw: " + email);
+            logger.error("Error retrieving user by email: " + email, e);
         }
         return null;
     }

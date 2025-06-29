@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+
+
+  <Appenders>
+    <RollingFile name="DatabaseErrorLog" fileName="/com/example/javablog/logs/error/errors.log"
+                 filePattern="/com/example/javablog/logs/db-errors-%d{yyyy-MM-dd}.log">
+      <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+      <Policies>
+        <TimeBasedTriggeringPolicy interval="1"/>
+      </Policies>
+    </RollingFile>
+
+
+    <RollingFile name="AccessLog" fileName="/com/example/javablog/logs/access/access.log"
+             filePattern="/com/example/javablog/logs/access/access-%d{yyyy-MM-dd}.log">
+  <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %-5level %msg%n"/>
+  <Policies>
+    <TimeBasedTriggeringPolicy interval="1"/>
+  </Policies>
+</RollingFile>
+
+  </Appenders>
+
+    <Loggers>
+        <Logger name="com.example.javablog.logs.error" level="error" additivity="false">
+        <AppenderRef ref="DatabaseErrorLog"/>
+        </Logger>
+    
+        <Logger name="com.example.javablog.logs.access" level="info" additivity="false">
+        <AppenderRef ref="AccessLog"/>
+        </Logger>
+    
+        <Root level="info">
+        <AppenderRef ref="AccessLog"/>
+        </Root> 
+</Configuration>

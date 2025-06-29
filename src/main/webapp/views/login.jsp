@@ -20,7 +20,9 @@
         <p style="color:red">${error}</p>
     </form>
         </div>
-        <div class="footer"></div>
+        <div class="footer">
+            <a href="/register">Don't have an account? Register here</a>
+        </div>
 
     </div>
     
