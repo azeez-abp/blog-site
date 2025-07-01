@@ -86,6 +86,7 @@ public class FileUploadController extends HttpServlet {
         File uploadDir = new File(UPLOAD_DIR);
         if (!uploadDir.exists()) {
             uploadDir.mkdirs();
+            uploadDir.setWritable(true, false);
         }
 
         // Save the file
@@ -102,6 +103,7 @@ public class FileUploadController extends HttpServlet {
             req.setAttribute("success", "Avatar uploaded successfully.");
         } catch (Exception e) {
             accessLogger.error("Error uploading file for user: " + user.getUsername(), e);
+            e.printStackTrace();
             req.setAttribute("error", "Failed to upload file: " + e.getMessage());
         }
 

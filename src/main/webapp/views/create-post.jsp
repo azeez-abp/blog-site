@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib uri="jakarta.tags.functions" prefix="fn" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,10 +46,10 @@
                 <h1 class="text-3xl font-bold text-gray-800 mb-6">Create New Post</h1>
                 
                 <!-- Feedback Messages -->
-                <c:if test="${not empty error}">
+                <c:if test="${fn:trim(error) != ''}">
                     <div class="error bg-red-100 text-red-700 p-4 rounded-lg mb-6">${error}</div>
                 </c:if>
-                <c:if test="${not empty success}">
+                <c:if test="${fn:trim(success) != ''}">
                     <div class="success bg-green-100 text-green-700 p-4 rounded-lg mb-6">${success}</div>
                 </c:if>
 

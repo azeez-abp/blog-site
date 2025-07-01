@@ -22,7 +22,7 @@
                 <div class="flex items-center mb-8">
                     <c:choose>
                         <c:when test="${not empty user.avatarUrl}">
-                            <img src="/Uploads/${user.avatarUrl}" alt="User avatar" class="avatar-img mr-6" id="avatarPreview">
+                            <img src="/uploads${user.avatarUrl}" alt="User avatar" class="avatar-img mr-6" id="avatarPreview">
                         </c:when>
                         <c:otherwise>
                             <img src="https://via.placeholder.com/150" alt="Default avatar" class="avatar-img mr-6" id="avatarPreview">
@@ -74,6 +74,12 @@
             const bio = document.getElementById('bio');
             const charCount = document.getElementById('bioCharCount');
             charCount.textContent = `${bio.value.length}/255 characters`;
+            if (bio.value.length > 255) {
+                charCount.classList.add('text-red-600');
+            } else {
+                charCount.classList.remove('text-red-600');
+            }
+            console.log("Character count updated:", bio.value.length);
         }
         updateCharCount(); // Initial count
 

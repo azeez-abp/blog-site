@@ -19,6 +19,10 @@ public class FileServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         String requestedFile = req.getPathInfo();
+        if (requestedFile == null || requestedFile.isEmpty() || requestedFile.equals("/")) {
+            res.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid file request");
+            return;
+        }
         if (requestedFile == null) {
             res.sendError(HttpServletResponse.SC_NOT_FOUND);
             return;
@@ -29,8 +33,11 @@ public class FileServlet extends HttpServlet {
             res.sendError(HttpServletResponse.SC_NOT_FOUND);
             return;
         }
+    
+
 
         Path path = Paths.get(file.getAbsolutePath());
+        System.out.println("Serving file opt/uploads: " + path.toAbsolutePath());
         String contentType = getServletContext().getMimeType(file.getName());
         res.setContentType(contentType != null ? contentType : "application/octet-stream");
         res.setContentLength((int) file.length());
