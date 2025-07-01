@@ -1,0 +1,20 @@
+#!/bin/bash
+# Build the project
+mvn clean package
+
+# Stop Tomcat
+sudo /opt/tomcat/bin/shutdown.sh
+sleep 4 # Increased to ensure complete shutdown
+
+# Clear Tomcat work and webapps
+sudo rm -rf /opt/tomcat/work/*
+sudo rm -rf /opt/tomcat/webapps/ROOT /opt/tomcat/webapps/ROOT.war
+
+# Copy WAR as ROOT.war
+sudo cp target/java-webapp.war /opt/tomcat/webapps/ROOT.war
+
+# Ensure correct permissions
+sudo chmod -R 644 /opt/tomcat/webapps/ROOT.war
+
+# Start Tomcat
+sudo /opt/tomcat/bin/startup.sh

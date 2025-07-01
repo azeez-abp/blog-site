@@ -40,13 +40,18 @@ form {
     flex-direction: column;
 }
 
-input {
+input, textarea {
     padding: 12px;
     margin: 10px 0;
     border: 1px solid #ccc;
     border-radius: 6px;
     font-size: 1em;
     transition: border-color 0.2s;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 80px;
 }
 
 input:focus {

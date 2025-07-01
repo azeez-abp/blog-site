@@ -1,15 +1,16 @@
 #!/usr/bin/env bash
 source .env  # Load environment variables from .env file
 
-if [ -z "$USERNAME" ] || [ -z "$PASSWORD" ]; then
+if [ -z "$DB_USER" ] || [ -z "$DB_PASS" ]; then
     echo "Usage: $0 <username> <password>"
     exit 1
 fi
 
-mysql -u $USERNAME -p$PASSWORD your_database < migration.sql
+mysql -u "$DB_USER" -p"$DB_PASS" "$DB_NAME" < tables.sql
+
 if [ $? -eq 0 ]; then
     echo "Database migration completed successfully."
 else
     echo "Database migration failed."
     exit 1
-fi
+fi 

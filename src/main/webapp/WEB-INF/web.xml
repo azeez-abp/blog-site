@@ -37,4 +37,56 @@
     <servlet-name>DashboardController</servlet-name>
     <url-pattern>/dashboard</url-pattern>
   </servlet-mapping>
+  <!-- Logour -->
+  <!-- LogoutController mapping -->
+    <servlet>
+        <servlet-name>LogoutController</servlet-name>
+        <servlet-class>com.example.javablog.controller.LogoutController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LogoutController</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+
+
+<!-- Get uploaded file path  -->
+    <servlet>
+    <servlet-name>FileServlet</servlet-name>
+    <servlet-class>com.example.javablog.controller.FileServlet</servlet-class>
+
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FileServlet</servlet-name>
+        <url-pattern>/uploads/*</url-pattern>
+    </servlet-mapping>
+
+    <!-- Upload -->
+    <servlet>
+        <servlet-name>FileUploadController</servlet-name>
+        <servlet-class>com.example.javablog.controller.FileUploadController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FileUploadController</servlet-name>
+        <url-pattern>/upload</url-pattern>
+    </servlet-mapping>
+  
+  <!-- ProfileController mapping -->
+ <servlet>
+        <servlet-name>ProfileController</servlet-name>
+        <servlet-class>com.example.javablog.controller.ProfileController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ProfileController</servlet-name>
+        <url-pattern>/profile/edit</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>CreatePostController</servlet-name>
+        <servlet-class>com.example.javablog.controller.CreatePostController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CreatePostController</servlet-name>
+        <url-pattern>/posts/new</url-pattern>
+    </servlet-mapping>
+
 </web-app>

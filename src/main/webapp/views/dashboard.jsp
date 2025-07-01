@@ -46,17 +46,17 @@
         <aside class="md:w-1/3 space-y-6">
             <!-- Author Info -->
             <div class="bg-white p-6 rounded-lg shadow">
-                <h3 class="text-xl font-semibold text-gray-800 mb-4">About the Author</h3>
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">About Me</h3>
                 <div class="flex items-center mb-4">
                     <img src="https://via.placeholder.com/80" alt="Author avatar" class="w-16 h-16 rounded-full mr-4">
                     <div>
-                        <h4 class="text-lg font-semibold text-gray-800">John Doe</h4>
-                        <p class="text-gray-600">Senior Java Developer with a passion for sharing knowledge and building scalable systems.</p>
+                        <h4 class="text-lg font-semibold text-gray-800"><c:if test="${not empty user.username}">${user.username}</c:if></h4>
+                        <p class="text-gray-600"><c:if test="${not empty user.bio}">${user.bio}</c:if></p>
                     </div>
                 </divბ
 
                 <div class="mt-4">
-                    <a href="/author/johndoe" class="text-blue-600 hover:underline">View Profile</a>
+                    <a href="/profile/edit" class="text-blue-600 hover:underline">View Profile</a>
                 </div>
             </div>
             <!-- Recent Posts -->

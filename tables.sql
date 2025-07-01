@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS users (
 );
 
 -- Posts table
-CREATE TABLE IF NOT EXITS posts (
+CREATE TABLE IF NOT EXISTS posts (
     id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
     slug VARCHAR(255) NOT NULL UNIQUE,
@@ -22,13 +22,22 @@ CREATE TABLE IF NOT EXITS posts (
     FOREIGN KEY (author_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
-ALTER TABLE posts (
-    ADD CONSTRAINT chk_slug CHECK (slug REGEXP '^[a-z0-9]+(?:-[a-z0-9]+)*$'),
-    ADD COLUMN status ENUM('draft', 'published', 'archived') DEFAULT 'draft',
-    ADD COLUMN views INT DEFAULT 0,
-    ADD COLUMN likes INT DEFAULT 0,
-    ADD COLUMN comments_count INT DEFAULT 0
-);
+-- ALTER TABLE posts
+-- ADD CONSTRAINT chk_slug CHECK (slug REGEXP '^[a-z0-9]+(?:-[a-z0-9]+)*$');
+
+-- ALTER TABLE posts
+-- ADD COLUMN status ENUM('draft', 'published', 'archived') DEFAULT 'draft';
+
+-- ALTER TABLE posts
+-- ADD COLUMN views INT DEFAULT 0;
+
+-- ALTER TABLE posts
+-- ADD COLUMN likes INT DEFAULT 0;
+
+-- ALTER TABLE posts
+-- ADD COLUMN comments_count INT DEFAULT 0;
+
+DESCRIBE posts;
 
 -- Comments table
 CREATE TABLE  IF NOT EXISTS comments (

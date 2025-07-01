@@ -5,6 +5,9 @@ import com.example.javablog.dao.UserDAOImpl;
 import com.example.javablog.model.User;
 import org.mindrot.jbcrypt.BCrypt;
 
+import com.example.javablog.model.Post;
+import java.util.List;
+
 public class UserServiceImpl implements UserService {
     private UserDAO userDAO = new UserDAOImpl();
 
@@ -24,5 +27,13 @@ public class UserServiceImpl implements UserService {
             return user; // Authentication successful
         }
         return null; // Authentication failed
+    }
+
+    public void updateUser(User user) {
+        userDAO.updateUser(user);
+    }
+
+    public List<Post> getUserPosts(int userId) {
+        return userDAO.getUserPosts(userId);
     }
 }

@@ -19,6 +19,7 @@ public class UserController extends HttpServlet {
         String username = req.getParameter("username");
         String email = req.getParameter("email");
         String password = req.getParameter("password");
+        String bio = req.getParameter("bio");
         if (userService.emailExists(email)) {
             req.setAttribute("error", "Email already registered.");
             req.getRequestDispatcher("/views/register.jsp").forward(req, resp);
@@ -29,6 +30,7 @@ public class UserController extends HttpServlet {
         user.setUsername(username);
         user.setEmail(email);
         user.setPassword(password); // Will be hashed in service layer
+        user.setBio(bio); // Set the bio field
         userService.register(user);
         resp.sendRedirect("/login");
     }
